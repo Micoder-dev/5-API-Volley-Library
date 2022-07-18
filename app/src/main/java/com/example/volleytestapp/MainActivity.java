@@ -77,6 +77,23 @@ public class MainActivity extends AppCompatActivity {
 
                         Log.i("ARRAYRESPONSE", response + "");
 
+                        for (int index = 0; index < response.length(); index++) {
+
+                            try {
+
+                                JSONObject jokeJsonObject = response.getJSONObject(index);
+                                Log.i("JOKE",
+                                        jokeJsonObject.getString("setup")
+                                                + " - "
+                                                + jokeJsonObject.getString("punchline"));
+
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+
+                        }
+
                     }
                 },
                 new Response.ErrorListener() {
