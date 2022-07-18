@@ -20,16 +20,22 @@ import org.json.JSONObject;
 
 public class MainActivity extends AppCompatActivity {
 
-    RequestQueue mRequestQueue;
-    RequestQueue mRequestQueueArray;
+//    RequestQueue mRequestQueue;
+//    RequestQueue mRequestQueueArray;
+
+    RequestQueue mSingleRequestQueue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mRequestQueue = Volley.newRequestQueue(this);
-        mRequestQueueArray = Volley.newRequestQueue(this);
+
+
+//        mRequestQueue = Volley.newRequestQueue(this);
+//        mRequestQueueArray = Volley.newRequestQueue(this);
+
+        mSingleRequestQueue = VolleySingleton.getInstance().getRequestQueue();
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET,
                 "https://joke.deno.dev/",
@@ -66,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
 
-        mRequestQueue.add(jsonObjectRequest);
+        mSingleRequestQueue.add(jsonObjectRequest);
 
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET,
                 "https://joke.deno.dev/type/general/10",
@@ -104,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
 
                     }
                 });
-        mRequestQueueArray.add(jsonArrayRequest);
+        mSingleRequestQueue.add(jsonArrayRequest);
 
     }
 }
